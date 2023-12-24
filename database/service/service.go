@@ -26,14 +26,27 @@ func AddPhoto(db *gorm.DB, photo *model.Photo) error {
 	return db.Model(&model.Photo{}).Save(photo).Error
 }
 
-func AddUser(db *gorm.DB, user *model.User) error {
-	return db.Model(&model.User{}).Save(user).Error
+func AddUser(db *gorm.DB, login string, password string, firstName string, lastName string) error {
+	return db.Create(&model.User{Login: login, Password: password, FirstName: firstName, LastName: lastName}).Error
 }
 
 func GetArticleByHeader(db *gorm.DB, header string) (model.Article, error) {
 	var article model.Article
 	err := db.Model(&model.Article{}).Where(&model.Article{Header: header}).Find(&article).Error
 	return article, err
+}
+
+func GetArticleById(db *gorm.DB, id int) (model.Article, error) {
+	var article model.Article
+	err := db.First(&article, id).Error
+	return article, err
+}
+
+func GetPhotoById(db *gorm.DB, id int) (model.Photo, error) {
+	var photo model.Photo
+	err := db.Find(&photo, id).Error
+
+	return photo, err
 }
 
 func GetPhotosByDate(db *gorm.DB, datetime string) ([]model.Photo, error) {
@@ -52,6 +65,12 @@ func GetUserByFirstNameByLastName(db *gorm.DB, firstName string, lastName string
 	var users []model.User
 	err := db.Model(&model.User{}).Where(&model.User{FirstName: firstName, LastName: lastName}).Find(&users).Error
 	return users, err
+}
+
+func GetUserByLogin(db *gorm.DB, login string) (model.User, error) {
+	var user model.User
+	err := db.Model(&model.User{}).Where(model.User{Login: login}).Find(&user).Error
+	return user, err
 }
 
 func GetUserByCreds(db *gorm.DB, login string, password string) (model.User, error) {

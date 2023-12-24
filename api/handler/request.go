@@ -1,8 +1,8 @@
 package handler
 
 type LoginRequest struct {
-	Email    string `json:"email"`
-	Password string `json:"password"`
+	Login    string `json:"Login"`
+	Password string `json:"Password"`
 }
 
 type LoginResponse struct {

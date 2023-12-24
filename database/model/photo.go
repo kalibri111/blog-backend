@@ -7,7 +7,9 @@ import (
 
 type Photo struct {
 	gorm.Model
+	UserID uint
 	Camera string
 	Lens   string
+	Photo  string
 	Date   time.Time
 }

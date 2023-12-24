@@ -21,5 +21,5 @@ require (
 	github.com/valyala/tcplisten v1.0.0 // indirect
 	golang.org/x/sys v0.14.0 // indirect
 	gorm.io/driver/sqlite v1.5.4 // indirect
-	gorm.io/gorm v1.25.2-0.20230530020048-26663ab9bf55 // indirect
+	gorm.io/gorm v1.25.5 // indirect
 )
